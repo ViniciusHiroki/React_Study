@@ -5,7 +5,6 @@ export const wordlist = {
     profissões: ["Médico", "Professor", "Engenheiro", "Advogado", "Cozinheiro"],
     alimentos: ["Pizza", "Maçã", "Arroz", "Chocolate", "Sorvete"],
     esportes: ["Futebol", "Basquete", "Tênis", "Natação", "Ciclismo"],
-    filmes: ["Titanic", "Matrix", "Star Wars", "Jurassic Park", "O Senhor dos Anéis"],
     roupas: ["Camiseta", "Calça", "Vestido", "Sapato", "Chapéu"],
     instrumentos: ["Violino", "Guitarra", "Piano", "Trompete", "Bateria"],
     transporte: ["Avião", "Bicicleta", "Navio", "Ônibus", "Trem"]
