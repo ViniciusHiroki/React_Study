@@ -1,0 +1,9 @@
+--Criar projeto react
+npx create-react-app nome-do-projeto
+npm start
+
+--Instalar o router
+npm i react-router-dom
+
+--Instalar fireBase 
+npm i firebase
