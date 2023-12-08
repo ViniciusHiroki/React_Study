@@ -1,0 +1,84 @@
+1 - useState:
+Hook mais usado no react, funciona como uma variável mas toda vez que seu valor é alterado, o react renderiza na tela o novo valor. Exemplo:
+
+const [contador, setContador] = useState(0);
+setContador(contador + 1)
+
+2 - useEffect:
+Hook que fica verificando a todo momento se há alteração de um valor para depois realizar uma função. Exemplo:
+
+useEffect(() => {
+    if(life==0){
+      clearLetterStates();
+      setGameStage(stages[2].name);
+    }
+}, [life]);
+
+no exemplo acima ele fica verificando mudança no valor de life para depois realizar a função.
+Pode ser usado também sem o segundo parâmetro ([life]), mas aí o useEffect será ativado toda vez que a página for renderizada.
+
+3 - useContext:
+Hook usado para manipulção de valores que estará presente em vários components, funcionando como um valor global. Cria se o context com o createContext(), e o usa em 
+outros components com useContext(). Exemplo:
+
+--component HookUseContext
+import {createContext } from 'react';
+export const SomeContext = createContext();
+export const HookUseContext = ({children}) => {
+    const contextValue = "testing context";
+    return(
+        <SomeContext.Provider value=({ contextValue })>
+            {children}
+        </SomeContext.Provider>
+    )
+}
+
+--pagina Main
+<HookUseContext>
+    ...
+</HookUseContext>
+
+Todos components entre <HookUseContext> poderão usar o useContext
+
+--component Home
+import { useContext } from 'react';
+import { SomeContext } from '../components/HookUseContext';
+const Home = () => {
+    const { contextValue } = useContext(SomeContext);
+    return(
+        <p>valor do context: {contextValue}</p>
+    )
+}
+export default Home;
+
+3 - useRef:
+parecido com useState mas na forma de objeto e seu valor está na propriedade current, e ele não renderiza o componente ao ser alterado. Util para quando
+o uso de useState causa um loop infinito. Exemplo:
+
+--loop infinito
+const [counter, setCounter] = useState(0)
+useEffect(() => {
+    setConter(counter + 1);
+})
+
+--sem loop
+const numberRef = useRef(0)
+useEffect(() => {
+    numberRef.current = numberRef.current + 1
+})
+
+4 - useCallback:
+Hook parecido com useEffect, mas assim como o useRef, a função não é ativado toda vez que o component re-renderiza, é ativada somente uma vez 
+quando o component é chamado na primeira vez. Bom para para evitar repetições de querys e requests em APIs desnecessárias. Exemplo:
+
+const getItensFromDatabase = useCallback(() => {
+    return ['a', 'b', 'c'];
+}, []);
+
+5 - useLayoutEffect:
+Hook que realiza uma função antes de renderizar ou processar qualquer outra coisa na página, similar à criar uma função await na primeira 
+linha de código. Exemplo:
+
+useLayoutEffect(() => {
+    console.log(2)
+})
